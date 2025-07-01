@@ -15,9 +15,26 @@ Attributes `placeholder` `min` and `max` may be declared, as well as custom form
 
 ## Usage
 
-### Install
+### Import script
 
-Include source
+The script runs automatically on import. API is via attributes on DOM elements, with no JS calls or imports. 
+
+* Via `npm`; packed:
+```
+npm -i halcyoninno/date-input-facade
+```
+```
+<script>
+  import '@halcyoninno/date-input-facade';
+</script>
+```
+
+* Relative server path:
+```
+<script src="./script/date-input-facade.js"></script>
+```
+
+* CDN
 ```
 ```
 
@@ -55,11 +72,6 @@ Formats according to OS locale by default. Optionally overridden by formatter me
 ### Date bounding
 
 Attributes `min` and `max` can be applied to the facade.
-
-
-## Browser support
-
-Test on a variety of devices.
 
 
 
