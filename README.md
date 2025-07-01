@@ -1,22 +1,16 @@
-# DATE-INPUT-FACADE README
+# Date input facade
 
-Pure JS, framework-agnositic solution for styling `input type="date"` by overlaying an `input type="text"`. 
+A widely supported pure JS solution for styling the form field representation of `input type="date"`.
 
+As of 2025, browser makers limit stylistic control of `input type="date"` DOM elements, while also tightly coupling the associated native date picker to that input, such that absent an ugly workaround, there is no way to avail the user of a native date-picker experience without sacrificing input styling.
 
-## The problem
+This package offers such a workaround, while insulating the consuming code base.
 
-As of this writing in 2024, browser makers have stuck with the odd choice of denying stylistic control of `input type="date"`. 
+Declare the date input as `<input type="text" data-date-facade ... />`  then proceed to style it like any other text input -- no DOM clutter or special CSS selectors needed. 
 
-At the same time, they limit execution of the native date picker to direct user interaction with that element; there are many good reasons to rely on a native date picker, but virtually nobody is willing to dispense with stylistic control in order to avail their users of it.
+Under the hood, it will retain a shadow `input type="date"` to which user input is delegated, prompting the normal native picker.
 
-Whatever laudable reasons they have for these constraints are irrelevant if it pushes that vast majority into using an entirely JS-based solutions, usually abandoned and poorly supported after a couple years.
-
-
-## A solution
-
-A broadly supported, minimally invasive solution, is to declare the date field `input type="text" data-date-facade` then with styling it as regular `text` field, including `placeholder` attribute.
-
-Included JS will then automatically construct an `input type="date"` obscured underneath the facade input, passing input events to it, mirroring its value.
+Attributes `placeholder` `min` and `max` may be declared, as well as custom formatting hook. See usage examples below. 
 
 
 ## Usage
