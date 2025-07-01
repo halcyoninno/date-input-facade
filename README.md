@@ -2,13 +2,13 @@
 
 A widely supported pure JS solution for styling the form field representation of `input type="date"`.
 
-As of 2025, browser makers still limit stylistic control of the `input type="date"` DOM element, while also tightly coupling the associated native date picker to it, such that absent ugly workaround, there is no way to avail the user of a native date picker without accepting an incongruent-looking date form field.
+As of 2025, browser makers still limit stylistic control of `input type="date"` DOM element, while also tightly coupling the associated native date picker to it, such that absent an ugly workaround, there is no way to utilize native date picker without tolerating an incongruent-looking date form field.
 
-This package offers such a workaround, while insulating the consuming code base from work-around clutter.
+This package cleanly encapsulates such a workaround, insulating the consuming code base from work-around clutter.
 
-Declare the date input as `<input type="text" data-date-facade ... />` then style it like any other text input -- no DOM clutter or special CSS selectors. 
+Simply declare the date input as `<input type="text" data-date-facade ... />` then style it like any other text input -- no DOM clutter or special CSS selectors. 
 
-Under the hood, it will retain a shadow `input type="date"` to which user input is delegated, prompting native picker on focus.
+Under the hood, it will retain a shadow `input type="date"` to which user input is delegated, prompting native picker per usual use of the date input.
 
 Attributes `placeholder` `min` and `max` may be declared, as well as custom formatting hook. 
 
@@ -51,7 +51,7 @@ After applying `data-date-facade`, focus will now trigger and set value from nat
 
 ### Enabling keyboard date input
 
-If desired that user can override picked value with keyboard input,
+To enable user to override picked value with keyboard input,
 add `data-date-facade-enable-keyboard`:
 
 ```
@@ -79,6 +79,6 @@ which must be a method bound to `window` scope taking a Date object and returnin
 
 ### Date range bounding
 
-Attributes `min` and `max` on facade input will be mirrored by underlying `input type="date"`
-causing normal documented effect. 
+Attributes `min` and `max` on facade input will be mirrored on underlying `input type="date"`
+with normal documented effect. 
 
