@@ -2,7 +2,7 @@
 
 A widely supported pure JS solution for styling the form field representation of `input type="date"`.
 
-As of 2025, browser makers limit stylistic control of the `input type="date"` DOM element, while also tightly coupling the associated native date picker to it, such that absent ugly workaround, there is no way to avail the user of a native date-picker experience without accepting an incongruent-looking date input.
+As of 2025, browser makers limit stylistic control of the `input type="date"` DOM element, while also tightly coupling the associated native date picker to it, such that absent ugly workaround, there is no way to avail the user of a native date picker without accepting an incongruent-looking date form field.
 
 This package offers such a workaround, while insulating the consuming code base.
 
