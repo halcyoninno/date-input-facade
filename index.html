@@ -1,0 +1,51 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Date Input Facade Test</title>
+</head>
+<body>
+  <form>
+    
+    <h3>with placeholder</h3>
+    <input 
+        type="text" data-date-facade
+        placeholder="Enter date:" >
+
+    <h3>enable keyboard date input</h3>
+    <input 
+        type="text" data-date-facade
+        placeholder="Enter date:" 
+        data-date-facade-enable-keyboard
+        >
+
+    <h3>custom format date</h3>
+    <input 
+    type="text" 
+    data-date-facade
+    placeholder="Formatted date:" 
+    data-date-facade-formatter="myFormatter"
+    />
+
+    <script>
+    function myFormatter(dateVal) {
+        const day = dateVal.getDate().toString().padStart(2, '0');
+        const month = dateVal.toLocaleString('en-US', { month: 'short' }); // e.g. 'Sep'
+        const year = dateVal.getFullYear();
+        return `${month} ${day}, ${year}`;
+    }
+    </script>
+
+    <h3>date ranges</h3>
+    <input 
+        type="text" data-date-facade
+        placeholder="bounded:"
+        min="2025-01-01" max="2026-01-01">
+  </form>
+  <script type="module" src="src/index.js"></script>
+
+  <div id="log"></div>
+
+</body>
+</html>
