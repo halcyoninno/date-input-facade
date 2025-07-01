@@ -1,7 +1,8 @@
 {
-  "name": "date-input-facade",
+  "name": "@halcyoninno/date-input-facade",
   "version": "0.1.0",
   "description": "Facilitates styling of input type=\"date\" by overlaying an input of type=\"text\". Pure JS, framework agnostic. ",
+  "type": "module",
   "main": "src/index.js",
   "scripts": {
     "dev": "vite --host",
