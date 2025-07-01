@@ -4,24 +4,26 @@ A widely supported pure JS solution for styling the form field representation of
 
 As of 2025, browser makers still limit stylistic control of the `input type="date"` DOM element, while also tightly coupling the associated native date picker to it, such that absent ugly workaround, there is no way to avail the user of a native date picker without accepting an incongruent-looking date form field.
 
-This package offers such a workaround, while insulating the consuming code base.
+This package offers such a workaround, while insulating the consuming code base from work-around clutter.
 
 Declare the date input as `<input type="text" data-date-facade ... />` then style it like any other text input -- no DOM clutter or special CSS selectors. 
 
-Under the hood, it will retain a shadow `input type="date"` to which user input is delegated, prompting the normal native picker on focus.
+Under the hood, it will retain a shadow `input type="date"` to which user input is delegated, prompting native picker on focus.
 
-Attributes `placeholder` `min` and `max` may be declared, as well as custom formatting hook. See usage examples. 
+Attributes `placeholder` `min` and `max` may be declared, as well as custom formatting hook. 
+
+See usage examples. 
 
 
 ## Usage
 
-### Import script
+### Importation
 
-The script runs automatically on import. API is via attributes on DOM elements, with no JS calls or imports. 
+The script runs automatically on import, interfaced with via DOM element attributes.
 
-* Via `npm`; packed:
+* Via `npm` for a packed project:
 ```
-npm -i halcyoninno/date-input-facade
+npm -i @halcyoninno/date-input-facade
 ```
 ```
 <script>
@@ -29,49 +31,54 @@ npm -i halcyoninno/date-input-facade
 </script>
 ```
 
-* Relative server path:
+* Self-hosted:
 ```
 <script src="./script/date-input-facade.js"></script>
 ```
 
-* CDN
+* CDN (latest)
 ```
+<script src="https://cdn.jsdelivr.net/npm/@halcyoninno/date-input-facade"></script>
 ```
 
 ### Basic
 
-Clicking input now opens native picker and sets value accordingly. 
+After applying `data-date-facade`, focus will now trigger and set value from native picker.
 
 ```
-    <input type="text"  placeholder="Enter date:" data-datefacade/>
+    <input name="foo-date" type="text"  placeholder="Enter date:" data-date-facade/>
 ```
 
 ### Enabling keyboard date input
 
-By default the only interaction with the native picker can alter the field, however keyboard input can be enabled as by adding `data-datefacade-enable-keyboard` attribute:
+If desired that user can override picked value with keyboard input,
+add `data-date-facade-enable-keyboard`:
 
 ```
-    <input type="text" placeholder="Enter date:" data-datefacade data-datefacade-enable-keyboard/>
+    <input type="text" placeholder="Enter date:" data-date-facade data-date-facade-enable-keyboard/>
 ```
 
 ### Format customization  
 
-Formats according to OS locale by default. Optionally overridden by formatter method found in window scope. 
+Locale-specific default formatting overridden by specifying formatter method in `data-date-facade-formatter`;
+which must be a method bound to `window` scope taking a Date object and returning a string 
 
 ```
     <input type="text" placeholder="Enter date:" 
-        data-datefacade 
-        data-datefacade-formatter="myDateFormatter"/>
+        data-date-facade 
+        data-date-facade-formatter="myDateFormatter"/>
 ```
 ```
-    function myDateFormatter(date) {
-        ...
+    function myFormatter(dateVal) {
+        const day = dateVal.getDate().toString().padStart(2, '0');
+        const month = dateVal.toLocaleString('en-US', { month: 'short' }); // e.g. 'Sep'
+        const year = dateVal.getFullYear();
+        return `${month} ${day}, ${year}`;
     }
 ```
 
-### Date bounding
+### Date range bounding
 
-Attributes `min` and `max` can be applied to the facade.
-
-
+Attributes `min` and `max` on facade input will be mirrored by underlying `input type="date"`
+causing normal documented effect. 
 
